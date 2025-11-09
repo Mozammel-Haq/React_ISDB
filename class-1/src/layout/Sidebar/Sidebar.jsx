@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
-    <ul className="flex flex-col decoration-0 text-xl font-bold text-gray-600 py-10 w-96 h-screen bg-emerald-100">
+    <ul className="flex flex-col decoration-0 text-xl font-bold text-gray-600 py-10 w-96 bg-emerald-100">
       <el-dropdown class="inline-block">
         <button
-          className="inline-flex w-full justify-center gap-x-1.5 rounded-md hover:bg-amber-50 px-3 py-2 text-sm font-semibold text-gray-600 inset-ring-1 inset-ring-white/5"
+          className="inline-flex w-full justify-center gap-x-1.5 rounded-md hover:bg-amber-50 px-10 py-2 text-sm font-semibold text-gray-600 inset-ring-1 inset-ring-white/5"
         >
           Roles
           <svg

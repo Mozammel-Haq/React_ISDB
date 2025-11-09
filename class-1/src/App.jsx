@@ -9,9 +9,13 @@ const App = () => {
 
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout/>} />
+        <Route path="/" element={<Layout/>} >
+
+
         <Route path="/role-list" element={<RoleList/>} />
         <Route path="/create-role" element={<CreateRole/>} />
+
+        </Route>
       </Routes>
     </BrowserRouter>
   )

@@ -1,13 +1,7 @@
-import Footer from "../../layout/Footer/Footer"
-import Header from "../../layout/Header/Header"
-import Sidebar from "../../layout/Sidebar/Sidebar"
-
 const CreateRole = () => {
   return (
     <>
-    <Header/>
-    <div className="flex gap-5 w-full">
-        <Sidebar/>
+
         <div className="w-full flex items-center justify-center bg-gray-50 p-6">
       <div className="w-full max-w-lg bg-white shadow-md rounded-xl p-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
@@ -54,12 +48,9 @@ const CreateRole = () => {
           </div>
         </form>
       </div>
-    </div>
 
     </div>
 
-
-    <Footer/>
     </>
   )
 }
