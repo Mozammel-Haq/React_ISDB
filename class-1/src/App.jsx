@@ -6,6 +6,7 @@ import CustomerList from './pages/customers/CustomerList';
 import CreateCustomer from './pages/customers/CreateCustomer';
 import EditRole from './pages/roles/EditRole';
 import EditCustomer from './pages/customers/EditCustomer';
+import AddCustomer from './pages/customers/CreateCustomer';
 
 const App = () => {
   return (
@@ -22,7 +23,7 @@ const App = () => {
 
 
         <Route path="/customer" element={<CustomerList/>} />
-        <Route path="/customer/create" element={<CreateCustomer/>} />
+        <Route path="/customer/add" element={<AddCustomer/>} />
         <Route path="/customer/edit:id" element={<EditCustomer/>} />
 
         </Route>

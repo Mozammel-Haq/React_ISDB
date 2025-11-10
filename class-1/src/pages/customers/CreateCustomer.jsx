@@ -1,87 +1,137 @@
-import React from 'react'
+import React, { useState } from "react";
 
-const CreateCustomer = () => {
+const AddCustomer = () => {
+  const [photoPreview, setPhotoPreview] = useState(null);
+
+  // Handle file selection and preview
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const previewURL = URL.createObjectURL(file);
+      setPhotoPreview(previewURL);
+    } else {
+      setPhotoPreview(null);
+    }
+  };
+
   return (
-    <>
-      <div className="w-full flex items-center justify-center bg-gray-50 p-6"> 
-  <div className="w-full max-w-lg bg-white shadow-md rounded-xl p-8">
-    <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-      Create New Customer
-    </h2>
-
-    <form className="grid grid-cols-1 gap-4">
-      {/* Name Field */}
-      <div className="flex flex-col">
-        <label className="mb-1 text-gray-600 font-medium">Name</label>
-        <input
-          type="text"
-          placeholder="Enter full name"
-          className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400"
-        />
+    <section className="w-full flex flex-col items-center justify-center">
+      {/* Title */}
+      <div className="w-full flex flex-col items-center justify-center">
+        <h1 className="text-[2rem] font-bold text-[#3B9DF8] leading-[36px] my-2">
+          Create New Customer
+        </h1>
+        <p className="text-[1rem] dark:text-slate-400 text-[#424242]">
+          Please fill in the details to add a new customer.
+        </p>
       </div>
 
-      {/* Email Field */}
-      <div className="flex flex-col">
-        <label className="mb-1 text-gray-600 font-medium">Email</label>
-        <input
-          type="email"
-          placeholder="Enter email address"
-          className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400"
-        />
-      </div>
+      {/* Form */}
+      <form className="w-full max-w-2xl mt-[50px]">
+        {/* Name & Email */}
+        <div className="flex flex-col sm:flex-row items-center gap-[20px]">
+          <div className="flex flex-col gap-[5px] w-full sm:w-[50%]">
+            <label className="relative">
+              <input
+                type="text"
+                className="peer border-[#e5eaf2] border rounded-md outline-none px-4 py-3 dark:bg-transparent dark:border-slate-700 dark:text-[#abc2d3] w-full focus:border-[#3B9DF8] transition-colors duration-300"
+              />
+              <span className="absolute top-3 left-5 text-[#777777] peer-focus:-top-3 peer-focus:bg-white dark:peer-focus:bg-darkBgColor peer-focus:left-2 peer-focus:scale-[0.9] peer-focus:text-[#3B9DF8] peer-focus:px-1 transition-all duration-300">
+                Customer Name
+              </span>
+            </label>
+          </div>
 
-      {/* Phone Field */}
-      <div className="flex flex-col">
-        <label className="mb-1 text-gray-600 font-medium">Phone</label>
-        <input
-          type="text"
-          placeholder="Enter phone number"
-          className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400"
-        />
-      </div>
+          <div className="flex flex-col gap-[5px] w-full sm:w-[50%]">
+            <label className="relative">
+              <input
+                type="email"
+                className="peer border-[#e5eaf2] border rounded-md outline-none px-4 py-3 w-full dark:bg-transparent dark:border-slate-700 dark:text-[#abc2d3] focus:border-[#3B9DF8] transition-colors duration-300"
+              />
+              <span className="absolute top-3 left-5 text-[#777777] peer-focus:-top-3 peer-focus:bg-white dark:peer-focus:bg-darkBgColor peer-focus:left-2 peer-focus:scale-[0.9] peer-focus:text-[#3B9DF8] peer-focus:px-1 transition-all duration-300">
+                Email Address
+              </span>
+            </label>
+          </div>
+        </div>
 
-      {/* Address Field */}
-      <div className="flex flex-col">
-        <label className="mb-1 text-gray-600 font-medium">Address</label>
-        <input
-          type="text"
-          placeholder="Enter address"
-          className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400"
-        />
-      </div>
+        {/* Phone & Address */}
+        <div className="flex flex-col sm:flex-row items-center gap-[20px] mt-[20px]">
+          <div className="flex flex-col gap-[5px] w-full sm:w-[50%]">
+            <label className="relative">
+              <input
+                type="text"
+                className="peer border-[#e5eaf2] border rounded-md outline-none px-4 py-3 dark:bg-transparent dark:border-slate-700 dark:text-[#abc2d3] w-full focus:border-[#3B9DF8] transition-colors duration-300"
+              />
+              <span className="absolute top-3 left-5 text-[#777777] peer-focus:-top-3 peer-focus:bg-white dark:peer-focus:bg-darkBgColor peer-focus:left-2 peer-focus:scale-[0.9] peer-focus:text-[#3B9DF8] peer-focus:px-1 transition-all duration-300">
+                Phone Number
+              </span>
+            </label>
+          </div>
 
-      {/* Photo Upload */}
-      <div className="flex flex-col">
-        <label className="mb-1 text-gray-600 font-medium">Photo</label>
-        <input
-          type="file"
-          accept="image/*"
-          className="px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-emerald-400"
-        />
-      </div>
+          <div className="flex flex-col gap-[5px] w-full sm:w-[50%]">
+            <label className="relative">
+              <input
+                type="text"
+                className="peer border-[#e5eaf2] border rounded-md outline-none px-4 py-3 dark:bg-transparent dark:border-slate-700 dark:text-[#abc2d3] w-full focus:border-[#3B9DF8] transition-colors duration-300"
+              />
+              <span className="absolute top-3 left-5 text-[#777777] peer-focus:-top-3 peer-focus:bg-white dark:peer-focus:bg-darkBgColor peer-focus:left-2 peer-focus:scale-[0.9] peer-focus:text-[#3B9DF8] peer-focus:px-1 transition-all duration-300">
+                Address
+              </span>
+            </label>
+          </div>
+        </div>
 
-      {/* Status Dropdown */}
-      <div className="flex flex-col">
-        <label className="mb-1 text-gray-600 font-medium">Status</label>
-        <select className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400">
-          <option value="">Select status</option>
-          <option value="Active">Active</option>
-          <option value="Inactive">Inactive</option>
-        </select>
-      </div>
+        {/* Photo Upload with Preview */}
+        <div className="flex gap-10 items-center w-full mt-[20px]">
+                    {/* Show preview if available */}
+          {photoPreview && (
+            <div className="mt-3 flex justify-center">
+              <img
+                src={photoPreview}
+                alt="Preview"
+                className="w-16 h-16 rounded-full object-cover border border-gray-300 shadow-sm"
+              />
+            </div>
+          )}
+          <label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handlePhotoChange}
+              className="peer border-[#e5eaf2] border rounded-md outline-none px-4 py-3 dark:bg-transparent dark:border-slate-700 dark:text-[#abc2d3] w-full focus:border-[#3B9DF8] transition-colors duration-300 file:mr-3 file:py-2 file:px-3 file:rounded-md file:border-0 file:bg-[#3B9DF8] file:text-white hover:file:bg-[#2e7fd1]"
+            />
+          </label>
 
-      {/* Button */}
-      <div className="flex justify-end mt-4">
-        <button className="px-6 py-2 bg-emerald-500 text-white font-semibold rounded-lg hover:bg-emerald-600 transition-colors">
-          Create Customer
+
+        </div>
+
+        {/* Status Dropdown */}
+        <div className="flex flex-col gap-[5px] w-full mt-[20px]">
+          <label className="relative">
+            <select
+              className="peer border-[#e5eaf2] border rounded-md outline-none px-4 py-3 w-full dark:bg-transparent dark:border-slate-700 dark:text-[#abc2d3] focus:border-[#3B9DF8] transition-colors duration-300 appearance-none"
+              defaultValue=""
+            >
+              <option value="" disabled>
+                Select Status
+              </option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </label>
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="py-2 px-6 border border-[#3B9DF8] text-[#3B9DF8] rounded font-[500] relative overflow-hidden z-10 mt-[20px] hover:bg-[#3B9DF8] hover:text-white transition-all duration-300"
+        >
+          Add Customer
         </button>
-      </div>
-    </form>
-  </div>
-</div>
+      </form>
+    </section>
+  );
+};
 
-    </>
-  )
-}
-
-export default CreateCustomer
+export default AddCustomer;
