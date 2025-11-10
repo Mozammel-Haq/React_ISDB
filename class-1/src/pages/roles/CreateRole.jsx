@@ -1,4 +1,46 @@
-const CreateRole = () => {
+import { useEffect, useState } from "react"
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
+ const CreateRole = () => {
+    const navigate = useNavigate('');
+
+      const [role, setRole] = useState({
+      name: "",
+      description: ""
+    })
+
+  const handleChange=(e)=>{
+    const{value,name} = e.target;
+    setRole((prev)=>(
+      {
+        ...prev,
+        [name]: value
+      }
+    ))
+  }
+  const handleSubmit= (e)=>{
+    e.preventDefault();
+        axios({
+      url:"http://localhost/elctro_Ecom_project/Admin/api/role/save",
+      method: "POST",
+      data:{
+        role
+      }
+    })
+    .then((res)=>{
+      console.log(res)
+      if(res){
+        navigate('/role')
+      }
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+
+  }
+  
+
   return (
     <>
 
@@ -13,36 +55,32 @@ const CreateRole = () => {
           <div className="flex flex-col">
             <label className="mb-1 text-gray-600 font-medium">Name</label>
             <input
+             name="name"
+              onChange={handleChange}
               type="text"
               placeholder="Enter full name"
               className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400"
             />
           </div>
-
-          {/* Email Field */}
+          {/* Description */}
           <div className="flex flex-col">
-            <label className="mb-1 text-gray-600 font-medium">Email</label>
-            <input
-              type="email"
-              placeholder="Enter email address"
+            <label className="mb-1 text-gray-600 font-medium">Description</label>
+            <textarea
+              onChange={handleChange}
+            name="description"
+              placeholder="Enter Description"
               className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400"
-            />
+            >
+              </textarea>
           </div>
 
-          {/* Role Dropdown */}
-          <div className="flex flex-col">
-            <label className="mb-1 text-gray-600 font-medium">Role</label>
-            <select className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400">
-              <option value="">Select role</option>
-              <option value="admin">Admin</option>
-              <option value="editor">Editor</option>
-              <option value="viewer">Viewer</option>
-            </select>
-          </div>
 
           {/* Horizontal Button */}
           <div className="flex justify-end mt-4">
-            <button className="px-6 py-2 bg-emerald-500 text-white font-semibold rounded-lg hover:bg-emerald-600 transition-colors">
+            <button 
+            onClick={handleSubmit}
+            type="submit"
+            className="px-6 py-2 bg-emerald-500 text-white font-semibold rounded-lg hover:bg-emerald-600 transition-colors">
               Create Role
             </button>
           </div>
