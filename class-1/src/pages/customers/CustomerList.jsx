@@ -7,8 +7,12 @@ import {BsChevronLeft, BsChevronRight, BsThreeDotsVertical} from "react-icons/bs
 import {MdDeleteOutline, MdOutlineEdit} from "react-icons/md";
 import {IoEyeOutline} from "react-icons/io5";
 import {IoIosArrowDown} from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+
 
 const CustomerList = () => {
+    const navigate = useNavigate();
+    const baseUrl = import.meta.env.VITE_BASE_URL
     const [customers, setCustomers] = useState([])
     const [openActionMenuId, setOpenActionMenuId] = useState(null);
     const selectRef = useRef(null);
@@ -30,11 +34,11 @@ const CustomerList = () => {
   status: "Status",
   address: "Address",
 };
-    // fetch Customers
-     useEffect(()=>{
-    axios({
+
+    const getCustomers=()=>{
+        axios({
       method: "GET",
-      url:"http://localhost/elctro_Ecom_project/Admin/api/customer",
+      url:`${baseUrl}/customer`,
       data: {}
     })
     .then((res)=>{
@@ -44,6 +48,12 @@ const CustomerList = () => {
     .catch((err)=>{
       console.log(err)
     })
+    }
+
+
+    // fetch Customers
+     useEffect(()=>{
+    getCustomers()
   },[])
     const toggleActionMenu = (id) => {
         setOpenActionMenuId(openActionMenuId === id ? null : id);
@@ -117,9 +127,29 @@ const CustomerList = () => {
         selectedRows.has(item.id)
     );
 
+    const handleDelete =(id)=>{
+
+        axios({
+            url:`${baseUrl}/customer/delete`,
+            method:"DELETE",
+            data:{
+                id: id
+            }
+        })
+        .then(res=>{
+            console.log(res)
+            getCustomers()
+        })
+        .catch(err=>console.log(err))
+
+    }
+
     const handleBulkDelete = () => {
         console.log("Deleting selected rows:", Array.from(selectedRows));
     };
+    const handleEdit =(id)=>{
+        navigate(`/customer/edit/${id}`)
+    }
 
     const handleOptionClick = (value) => {
         setPageSize(Number(value));
@@ -269,7 +299,7 @@ const CustomerList = () => {
                         <tbody>
                         {paginatedData.map((item, index) => (
                             <tr
-                                key={item.id}
+                                key={index}
                                 className={`border-t border-gray-200 dark:border-slate-700 cursor-pointer ${
                                     selectedRows.has(item.id)
                                         ? "bg-blue-50 hover:bg-blue-50 dark:hover:bg-blue-800/20 dark:bg-blue-800/20"
@@ -381,11 +411,11 @@ const CustomerList = () => {
                                         ${index > 2 ? "bottom-[90%]" : "top-[90%]"}
                                         zenui-table absolute dark:bg-slate-800 right-[80%] p-1.5 rounded-md bg-white shadow-md min-w-[160px] transition-all duration-100`}
                                     >
-                                        <p className="flex items-center gap-[8px] dark:text-[#abc2d3] dark:hover:bg-slate-900/50 text-[0.9rem] py-1.5 px-2 w-full rounded-md text-gray-700 cursor-pointer hover:bg-gray-50 transition-all duration-200">
+                                        <p onClick={()=>handleEdit(item.id)} className="flex items-center gap-[8px] dark:text-[#abc2d3] dark:hover:bg-slate-900/50 text-[0.9rem] py-1.5 px-2 w-full rounded-md text-gray-700 cursor-pointer hover:bg-gray-50 transition-all duration-200">
                                             <MdOutlineEdit/>
                                             Edit
                                         </p>
-                                        <p className="flex items-center gap-[8px] dark:text-[#abc2d3] dark:hover:bg-slate-900/50 text-[0.9rem] py-1.5 px-2 w-full rounded-md text-gray-700 cursor-pointer hover:bg-gray-50 transition-all duration-200">
+                                        <p onClick={()=>handleDelete(item.id)} className="flex items-center gap-[8px] dark:text-[#abc2d3] dark:hover:bg-slate-900/50 text-[0.9rem] py-1.5 px-2 w-full rounded-md text-gray-700 cursor-pointer hover:bg-gray-50 transition-all duration-200">
                                             <MdDeleteOutline/>
                                             Delete
                                         </p>

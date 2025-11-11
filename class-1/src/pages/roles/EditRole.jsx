@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 const EditRole = () => {
-
+  const baseUrl = import.meta.env.VITE_BASE_URL
   const {id} = useParams()
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
@@ -12,7 +12,7 @@ const EditRole = () => {
   // Get Current Role
   useEffect(()=>{
     axios({
-      url:`http://localhost/elctro_Ecom_project/Admin/api/role/find/${id}`,
+      url:`${baseUrl}/role/find/${id}`,
       method: "GET",
       data:{
         id:id
@@ -45,7 +45,7 @@ const EditRole = () => {
 const handleUpdate=(e)=>{
   e.preventDefault()
   axios({
-      url:"http://localhost/elctro_Ecom_project/Admin/api/role/update",
+      url:`${baseUrl}/role/update`,
       method: "PUT",
       data:{
         id:id,

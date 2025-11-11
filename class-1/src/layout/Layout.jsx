@@ -6,14 +6,14 @@ import { Outlet } from "react-router-dom"
 const Layout = () => {
   return (
     <>
-      <Header/>
+      {/* <Header/> */}
       <div className="flex gap-4 w-full">
         <Sidebar/>
         <Outlet/>
       </div>
       
 
-      <Footer/>
+      {/* <Footer/> */}
     </>
   )
 }

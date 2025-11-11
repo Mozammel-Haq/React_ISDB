@@ -2,9 +2,10 @@ import { useEffect, useState } from "react"
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
- const CreateRole = () => {
-    const navigate = useNavigate('');
+ const AddRole = () => {
 
+  const baseUrl = import.meta.env.VITE_BASE_URL
+    const navigate = useNavigate('');
       const [role, setRole] = useState({
       name: "",
       description: ""
@@ -22,7 +23,7 @@ import { useNavigate } from "react-router-dom";
   const handleSubmit= (e)=>{
     e.preventDefault();
         axios({
-      url:"http://localhost/elctro_Ecom_project/Admin/api/role/save",
+      url:`${baseUrl}/role/save`,
       method: "POST",
       data:{
         role
@@ -93,4 +94,4 @@ import { useNavigate } from "react-router-dom";
   )
 }
 
-export default CreateRole
+export default AddRole

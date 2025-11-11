@@ -3,12 +3,13 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 const RoleList = () => {
 
+    const baseUrl = import.meta.env.VITE_BASE_URL
   const navigate = useNavigate()
 
   const getRoles = ()=>{
         axios({
       method: "GET",
-      url:"http://localhost/elctro_Ecom_project/Admin/api/role",
+      url:`${baseUrl}/role`,
       data: {}
     })
     .then((res)=>{
@@ -28,7 +29,7 @@ const RoleList = () => {
 
   const handleDeleteRole =(id)=>{
        axios({
-      url:"http://localhost/elctro_Ecom_project/Admin/api/role/delete",
+      url:`${baseUrl}/role/delete`,
       method: "DELETE",
       data:{
         id:id
@@ -65,7 +66,7 @@ const RoleList = () => {
 
     {
       roles.map((role,i)=>
-          <tr class="border-b">
+          <tr class="border-b" key={i}>
       <td class="px-4 py-2">{++i}</td>
       <td class="px-4 py-2">{role.name}</td>
       <td class="px-4 py-2">{role.description}</td>
