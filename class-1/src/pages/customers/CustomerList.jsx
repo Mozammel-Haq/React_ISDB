@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const CustomerList = () => {
     const navigate = useNavigate();
     const baseUrl = import.meta.env.VITE_BASE_URL
+    const mediaBaseUrl = import.meta.env.VITE_MEDIA_BASE_URL;
     const [customers, setCustomers] = useState([])
     const [openActionMenuId, setOpenActionMenuId] = useState(null);
     const selectRef = useRef(null);
@@ -383,7 +384,7 @@ const CustomerList = () => {
                                   <td className="p-3 dark:text-[#abc2d3]">
                                     <div className="flex items-center">
                                     <img 
-                                    src={`../../../public/img/${item.photo}`} 
+                                    src={`${mediaBaseUrl}/profiles/${item.photo}`} 
                                     alt="User Photo"
                                     className="h-8 rounded-full mr-3"
                                     />

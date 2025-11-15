@@ -52,25 +52,25 @@ const RoleList = () => {
 
        <div className="w-full px-40 py-10">
         <h1 className="text-center mb-8 font-bold text-3xl">#Role List</h1>
-        <table class="min-w-full border border-gray-200">
-  <thead class="bg-gray-100">
+        <table className="min-w-full border border-gray-200">
+  <thead className="bg-gray-100">
     <tr>
 
-      <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">SL</th>
-      <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Name</th>
-      <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Description</th>
-      <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Action</th>
+      <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">SL</th>
+      <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Name</th>
+      <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Description</th>
+      <th className="px-4 py-2 text-left text-sm font-semibold text-gray-700">Action</th>
     </tr>
   </thead>
   <tbody>
 
     {
       roles.map((role,i)=>
-          <tr class="border-b" key={i}>
-      <td class="px-4 py-2">{++i}</td>
-      <td class="px-4 py-2">{role.name}</td>
-      <td class="px-4 py-2">{role.description}</td>
-      <td class="px-4 py-2">
+          <tr className="border-b" key={i}>
+      <td className="px-4 py-2">{++i}</td>
+      <td className="px-4 py-2">{role.name}</td>
+      <td className="px-4 py-2">{role.description}</td>
+      <td className="px-4 py-2">
         <button className="bg-none outline-0 border-0" onClick={()=>handleEditRole(role.id)}>✏️</button>&nbsp; &nbsp;
         <button className="bg-none outline-0 border-0" onClick={()=>handleDeleteRole(role.id)}>🗑️</button>
         </td>
